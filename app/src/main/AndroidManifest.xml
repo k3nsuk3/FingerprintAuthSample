@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="link.k3n.fingerprint_auth_sample">
 
+  <!-- USE_FINGERPRINTはnormal level protectionのため、Runtime Permissionの対応は不要-->
+  <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+  <!-- 指紋センサを利用する旨を明示する。アプリ動作の前提となるならrequired=trueに、そうでないならfalseにする-->
+  <uses-feature android:name="android.hardware.fingerprint" android:required="true"/>
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
