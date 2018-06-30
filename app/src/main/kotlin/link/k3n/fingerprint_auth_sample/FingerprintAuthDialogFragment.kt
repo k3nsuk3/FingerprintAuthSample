@@ -19,6 +19,7 @@ import android.support.v4.os.CancellationSignal
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.TextView
+import java.security.KeyStore
 import javax.crypto.Cipher
 
 class FingerprintAuthDialogFragment : DialogFragment() {
@@ -127,7 +128,7 @@ class FingerprintAuthDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         try {
-            context?.let { cryptoObject = KeyStoreUtil.getCryptoObjectForDecryption() }
+            context?.let { cryptoObject = KeyStore.getInstance("AndroidKeyStore").getCryptoObjectForDecryption() }
                     ?: onAuthenticationListener?.onError() ?: dismiss()
         } catch (e: Exception) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && e is KeyPermanentlyInvalidatedException) {
